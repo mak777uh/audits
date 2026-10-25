@@ -34,16 +34,23 @@ nothing; that is a build and review property. We say so in every offer.
 | `proofs/escrow.lean` | hold conserves the total, release returns the held amount exactly once, no negative balance, only owner/protocol may release |
 | `proofs/ledger.lean` | replay of transaction list is additive, empty list is a no-op, reversing a transaction restores the balance |
 
-## Coverage matrix (what a buyer gets in tier 1)
+## Coverage matrix: what is guaranteed, on what basis, and under which assumptions
 
-| invariant | proved in Lean | checked by conformance | not covered |
-|---|---|---|---|
-| I1 conservation | ✅ | ✅ (journal vs on-chain) | multi-chain bridges beyond the modelled chain |
-| I2 atomicity | — (by construction) | ✅ | cross-contract calls we did not model |
-| I3 idempotency | ✅ | ✅ | external retries outside the idempotency key |
-| I4 authorization | ✅ | — | key compromise (the key holder is authorised by definition) |
-| I5 bounds/ordering | per engagement | per engagement | oracle failures |
-| I6 shell isolation | — | — | **explicitly out of scope** |
+Proofs, audits and certifications are **different grounds of trust**, and they cannot be substituted for
+one another. This table separates them per invariant: what the guarantee actually is, what it rests on,
+which assumptions it needs, and what the buyer still has to justify themselves.
+
+| invariant | what is guaranteed | basis of trust | assumptions | what remains to justify |
+|---|---|---|---|---|
+| **I1** conservation | in the model, the sum of funds is unchanged across the hop | **kernel-checked proof** (Lean 4) + **conformance test** vs journal and balances | toolchain `v4.30.0` is faithful; the model matches the real data flow | that the production code follows the modelled data flow (tier 3 checks, tier 1 does not) |
+| **I2** atomicity | debit and credit are one operation | **construction** (single transaction) + code review | the runtime really provides atomic transactions | behaviour under partial failures, retries and reorgs on the target chain |
+| **I3** idempotency | a retried request does not debit twice | **kernel-checked proof** of the keyed journal + **test** | the idempotency key is unique and is checked before the debit | that clients actually pass the key, and that no other path writes balances |
+| **I4** authorization | only the owner or the protocol may release | **kernel-checked proof** over the actor model | the actor set is complete; roles cannot be escalated outside the core | key custody, signer compromise, governance takeover |
+| **I5** bounds and ordering | release happens inside the window and under the cap | **model + property tests** per engagement | clock/block source is honest within its tolerance | oracle manipulation, chain reorgs, deadline drift |
+| **I6** shell isolation | the untrusted shell cannot move funds directly | **architectural rule + review checklist** — *not* a proof | single-writer discipline is enforced in code review | everything outside the reviewed surface |
+
+Read this as: **I1, I3, I4 rest on a machine-checked basis; I2 on construction; I5 on testing; I6 on process.**
+If a buyer needs all six on a proof basis, that is tier 2-3 work and still cannot cover key custody.
 
 ## What this does not cover
 
