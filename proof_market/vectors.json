@@ -1,0 +1,67 @@
+{
+ "spec": "vecdht/paid_order/v1",
+ "vectors": [
+  {
+   "id": "V1-happy",
+   "statement_sha256": "e261c186900c21b25534693087bd6d2c48370b93d3cb012eb3212b4f27402566",
+   "expect_verdict": "pass",
+   "receipt": {
+    "kind": "lean_proof",
+    "artifact_sha256": "d3bbc7d32f77fabee2ba6a86babbee7d929db21f821093cf950c1dd3fee1b5ba",
+    "verdict": "pass",
+    "toolchain": "leanprover/lean4:v4.30.0",
+    "forbidden_tokens": [],
+    "axioms_reported": [],
+    "allowed_axioms": [],
+    "exit_code": 0,
+    "wall_clock_ms": 6489,
+    "budget_ms": 120000,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "error": null
+   }
+  },
+  {
+   "id": "V2-sorry",
+   "statement_sha256": "800dc690b20be67648e36504010912709dee1afb18e8c8f473a63ce7dc11ccd9",
+   "expect_verdict": "fail",
+   "receipt": {
+    "kind": "lean_proof",
+    "artifact_sha256": "29bbb268e3526f062ae3b2837ba900fd83d4e4ae7baa1aef98d05f1e710ec631",
+    "verdict": "fail",
+    "toolchain": "leanprover/lean4:v4.30.0",
+    "forbidden_tokens": [
+     "sorry"
+    ],
+    "axioms_reported": [],
+    "allowed_axioms": [],
+    "exit_code": 0,
+    "wall_clock_ms": 6477,
+    "budget_ms": 60000,
+    "stdout_sha256": "6b3e93820c13101bf43b9701c24ce1b269f42b5c649bdff7e6fe3400ec284d28",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "error": null
+   }
+  },
+  {
+   "id": "V3-timeout",
+   "statement_sha256": "c455b5c0e349820a180e708003bfe3f97e074a7fd7cf60fbfc67aceff63835c8",
+   "expect_verdict": "timeout",
+   "receipt": {
+    "kind": "lean_proof",
+    "artifact_sha256": "74b26a1686c08051d622939be68164d74cbc6e9300fe4e4d51e11968542e105c",
+    "verdict": "timeout",
+    "toolchain": "leanprover/lean4:v4.30.0",
+    "forbidden_tokens": [],
+    "axioms_reported": [],
+    "allowed_axioms": [],
+    "exit_code": -1,
+    "wall_clock_ms": 1060,
+    "budget_ms": 1000,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "error": null
+   }
+  }
+ ]
+}
