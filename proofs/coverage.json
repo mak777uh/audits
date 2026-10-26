@@ -1,0 +1,118 @@
+{
+ "generated_by": "proofs/coverage.py",
+ "method": "keyword labelling of theorem name+body; not a proof of coverage",
+ "theorems_total": 34,
+ "classes": {
+  "accounting-conservation": {
+   "title": "учёт: сумма не появляется и не исчезает",
+   "status": "proved-in-lean",
+   "theorems": [
+    "hold_conserves_total",
+    "release_restores",
+    "no_negative_iff",
+    "transfer_conserves",
+    "withdraw_keeps_nonnegative",
+    "deposit_changes_by",
+    "withdraw_changes_by",
+    "run_append"
+   ],
+   "note": "разметка по ключевым словам, см. proofs/coverage.py"
+  },
+  "authorization": {
+   "title": "права: кто может менять состояние",
+   "status": "proved-in-lean",
+   "theorems": [
+    "no_negative_iff",
+    "owner_can_release",
+    "release_implies_authorized",
+    "no_source_no_auth",
+    "owner_may_initiate"
+   ],
+   "note": "разметка по ключевым словам, см. proofs/coverage.py"
+  },
+  "idempotency": {
+   "title": "повторный вызов не удваивает эффект",
+   "status": "proved-in-lean",
+   "theorems": [
+    "notify_dedup",
+    "step_dup"
+   ],
+   "note": "разметка по ключевым словам, см. proofs/coverage.py"
+  },
+  "escrow-release": {
+   "title": "выпуск эскроу: условия и границы",
+   "status": "proved-in-lean",
+   "theorems": [
+    "hold_conserves_total",
+    "hold_adds_fee",
+    "release_clears",
+    "release_restores",
+    "no_negative_iff",
+    "anyone_cannot_release",
+    "owner_can_release",
+    "protocol_can_release",
+    "release_implies_authorized",
+    "deposit_withdraw_cancel",
+    "transfer_conserves",
+    "run_reverse_single",
+    "deposit_adds_locked",
+    "deposit_adds_escrowed",
+    "finalize_reduces_locked",
+    "finalize_reduces_escrowed",
+    "deposit_finalize_cancel",
+    "finalize_bounded"
+   ],
+   "note": "разметка по ключевым словам, см. proofs/coverage.py"
+  },
+  "upgrade-safety": {
+   "title": "апгрейд: состояние и права при замене кода",
+   "status": "proved-in-lean",
+   "theorems": [
+    "release_implies_authorized"
+   ],
+   "note": "разметка по ключевым словам, см. proofs/coverage.py"
+  },
+  "call-ordering": {
+   "title": "порядок кросс-контрактных вызовов",
+   "status": "not-covered",
+   "theorems": [],
+   "note": "нет теоремы с этим классом"
+  }
+ },
+ "theorems": [
+  "anyone_cannot_release",
+  "deposit_adds_escrowed",
+  "deposit_adds_locked",
+  "deposit_changes_by",
+  "deposit_finalize_cancel",
+  "deposit_withdraw_cancel",
+  "derive_keeps_origin",
+  "finalize_bounded",
+  "finalize_reduces_escrowed",
+  "finalize_reduces_locked",
+  "hold_adds_fee",
+  "hold_conserves_total",
+  "key_present_after",
+  "no_negative_iff",
+  "no_source_no_auth",
+  "notify_dedup",
+  "notify_limited",
+  "notify_records_key",
+  "owner_can_release",
+  "owner_may_initiate",
+  "protocol_can_release",
+  "public_published",
+  "release_clears",
+  "release_implies_authorized",
+  "release_restores",
+  "run_append",
+  "run_nil",
+  "run_reverse_single",
+  "run_single",
+  "secret_never_published",
+  "step_dup",
+  "transfer_conserves",
+  "withdraw_changes_by",
+  "withdraw_keeps_nonnegative"
+ ]
+}

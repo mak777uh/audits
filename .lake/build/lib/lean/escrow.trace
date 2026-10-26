@@ -1,0 +1,30 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["37c9bfacc2ecfc76.olean"],
+  "m": false,
+  "i": "bc6a099d61cd5e24.ilean",
+  "c": "795b7ff7c5bb2890.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean c:\\Users\\Admin\\.elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe C:\\111\\projects\\audits-repo\\proofs\\escrow.lean -o C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean\\escrow.olean -i C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean\\escrow.ilean -c C:\\111\\projects\\audits-repo\\.lake\\build\\ir\\escrow.c --setup C:\\111\\projects\\audits-repo\\.lake\\build\\ir\\escrow.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["deps",
+   [["«audits-proofs»/Proofs:extraDep",
+     [["@«audits-proofs»:extraDep", "00000000000006bb"]]],
+    ["imports", "00000000000006bb"]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.36.0, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e",
+   "394907dbd0ce4c96"],
+  ["C:\\111\\projects\\audits-repo\\proofs\\escrow.lean", "c20604f7a7c6e992"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: escrow", "bbc45a04f9e3c78a"],
+  ["Package.id?: (some audits-proofs)", "ccb41bfef4f771a3"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "9e1b3124b76bbe07"}

@@ -62,6 +62,72 @@
     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "error": null
    }
+  },
+  {
+   "id": "V4-tampered-artifact",
+   "statement_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+   "expect_verdict": "fail",
+   "artifact_path": "proofs/flows.lean",
+   "receipt": {
+    "kind": "lean_proof",
+    "artifact_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "verdict": "fail",
+    "toolchain": "leanprover/lean4:v4.30.0",
+    "forbidden_tokens": [],
+    "axioms_reported": [],
+    "allowed_axioms": [],
+    "exit_code": 0,
+    "wall_clock_ms": 6489,
+    "budget_ms": 120000,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "error": "artifact_sha256 mismatch"
+   },
+   "note": "хеш артефакта не совпадает с файлом — квитанция недействительна",
+   "expect_reject": true
+  },
+  {
+   "id": "V5-pass-with-error",
+   "statement_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+   "expect_verdict": "pass",
+   "receipt": {
+    "kind": "lean_proof",
+    "artifact_sha256": "d3bbc7d32f77fabee2ba6a86babbee7d929db21f821093cf950c1dd3fee1b5ba",
+    "verdict": "pass",
+    "toolchain": "leanprover/lean4:v4.30.0",
+    "forbidden_tokens": [],
+    "axioms_reported": [],
+    "allowed_axioms": [],
+    "exit_code": 1,
+    "wall_clock_ms": 6489,
+    "budget_ms": 120000,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "error": "lean: error"
+   },
+   "note": "несогласованная квитанция: pass при exit_code=1, selftest обязан отклонить",
+   "expect_reject": true
+  },
+  {
+   "id": "V6-missing-field",
+   "statement_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+   "expect_verdict": "pass",
+   "receipt": {
+    "kind": "lean_proof",
+    "artifact_sha256": "d3bbc7d32f77fabee2ba6a86babbee7d929db21f821093cf950c1dd3fee1b5ba",
+    "verdict": "pass",
+    "forbidden_tokens": [],
+    "axioms_reported": [],
+    "allowed_axioms": [],
+    "exit_code": 0,
+    "wall_clock_ms": 6489,
+    "budget_ms": 120000,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "error": null
+   },
+   "note": "нет обязательного поля toolchain",
+   "expect_reject": true
   }
  ]
 }

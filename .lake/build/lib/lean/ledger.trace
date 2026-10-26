@@ -1,0 +1,30 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["eee4e9863eaa2a36.olean"],
+  "m": false,
+  "i": "4e586b9bee99d096.ilean",
+  "c": "a8472b36281b7421.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean c:\\Users\\Admin\\.elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe C:\\111\\projects\\audits-repo\\proofs\\ledger.lean -o C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean\\ledger.olean -i C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean\\ledger.ilean -c C:\\111\\projects\\audits-repo\\.lake\\build\\ir\\ledger.c --setup C:\\111\\projects\\audits-repo\\.lake\\build\\ir\\ledger.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["deps",
+   [["«audits-proofs»/Proofs:extraDep",
+     [["@«audits-proofs»:extraDep", "00000000000006bb"]]],
+    ["imports", "00000000000006bb"]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.36.0, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e",
+   "394907dbd0ce4c96"],
+  ["C:\\111\\projects\\audits-repo\\proofs\\ledger.lean", "3e8bf4f92c4b9a3b"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: ledger", "f7bb074bbf7bf8d0"],
+  ["Package.id?: (some audits-proofs)", "ccb41bfef4f771a3"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "8889fdfffac9c335"}

@@ -1,0 +1,37 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["e06228afcf12aadd.olean"],
+  "m": false,
+  "i": "2231d335ec2ff6e1.ilean",
+  "c": "226322e2cf552f45.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean c:\\Users\\Admin\\.elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe C:\\111\\projects\\audits-repo\\proofs\\flows_info.lean -o C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean\\flows_info.olean -i C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean\\flows_info.ilean -c C:\\111\\projects\\audits-repo\\.lake\\build\\ir\\flows_info.c --setup C:\\111\\projects\\audits-repo\\.lake\\build\\ir\\flows_info.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "proofs/flows_info.lean:55:27: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲",
+   "level": "warning"},
+  {"message":
+   "proofs/flows_info.lean:62:27: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲",
+   "level": "warning"}],
+ "inputs":
+ [["deps",
+   [["«audits-proofs»/Proofs:extraDep",
+     [["@«audits-proofs»:extraDep", "00000000000006bb"]]],
+    ["imports", "00000000000006bb"]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.36.0, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e",
+   "394907dbd0ce4c96"],
+  ["C:\\111\\projects\\audits-repo\\proofs\\flows_info.lean",
+   "bd025628cf403c16"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: flows_info", "f8904d54b4213380"],
+  ["Package.id?: (some audits-proofs)", "ccb41bfef4f771a3"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "5230f68402a28fd2"}

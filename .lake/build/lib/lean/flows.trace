@@ -1,0 +1,30 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["37e54365e9823d16.olean"],
+  "m": false,
+  "i": "d61c4b78cf1be900.ilean",
+  "c": "140d3f54b0fbd600.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean c:\\Users\\Admin\\.elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe C:\\111\\projects\\audits-repo\\proofs\\flows.lean -o C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean\\flows.olean -i C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean\\flows.ilean -c C:\\111\\projects\\audits-repo\\.lake\\build\\ir\\flows.c --setup C:\\111\\projects\\audits-repo\\.lake\\build\\ir\\flows.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["deps",
+   [["«audits-proofs»/Proofs:extraDep",
+     [["@«audits-proofs»:extraDep", "00000000000006bb"]]],
+    ["imports", "00000000000006bb"]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.36.0, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e",
+   "394907dbd0ce4c96"],
+  ["C:\\111\\projects\\audits-repo\\proofs\\flows.lean", "48494460d72804ed"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: flows", "f1c738eeda2a803d"],
+  ["Package.id?: (some audits-proofs)", "ccb41bfef4f771a3"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "15a1424cb38c1e9a"}

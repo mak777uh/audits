@@ -23,7 +23,20 @@ import sys
 import time
 
 R = pathlib.Path(r"C:\111")
-LEAN = pathlib.Path(os.path.expanduser("~")) / ".elan" / "toolchains" / "leanprover--lean4---v4.30.0" / "bin" / "lean.exe"
+def _find_lean() -> pathlib.Path:
+    """Ищем lean переносимо: PATH -> elan toolchains -> прежний путь (Windows)."""
+    import shutil
+    w = shutil.which("lean")
+    if w:
+        return pathlib.Path(w)
+    home = pathlib.Path(os.path.expanduser("~")) / ".elan" / "toolchains"
+    cands = sorted(home.glob("*/bin/lean*")) if home.exists() else []
+    if cands:
+        return cands[-1]
+    return pathlib.Path("lean")
+
+
+LEAN = _find_lean()
 LEAN_ENV = R / "agents" / "swarm" / "leancheck_v3" / "env2.txt"
 ALLOWED_AXIOMS: set[str] = set()  # пустой allowlist: аксиомы запрещены
 
@@ -101,14 +114,80 @@ def pytest_receipt(artifact: pathlib.Path, budget_ms: int) -> dict:
     }
 
 
+def selftest() -> int:
+    """Проверка самих квитанций: целостность и согласованность, без запуска Lean.
+
+    Что проверяется на каждом векторе:
+      * обязательные поля квитанции присутствуют;
+      * artifact_sha256 совпадает с пересчитанным (если артефакт доступен в репозитории);
+      * verdict согласован: при exit_code != 0 вердикт не может быть "pass";
+      * битые квитанции (подмена хеша, отсутствие поля, вердикт pass при ошибке) отвергаются.
+
+    Чего НЕ проверяет: что Lean действительно принял доказательство — это делает CI отдельным шагом.
+    """
+    import hashlib
+    vp = pathlib.Path(__file__).with_name("vectors.json")
+    data = json.loads(vp.read_text(encoding="utf-8"))
+    vectors = data.get("vectors") or []
+    required = {"kind", "artifact_sha256", "verdict", "toolchain", "exit_code"}
+    passed = failed = 0
+    for v in vectors:
+        vid = v.get("id", "?")
+        rc = v.get("receipt") or {}
+        expect = v.get("expect_verdict")
+        problems = []
+        missing = required - set(rc)
+        if missing:
+            problems.append(f"нет полей: {sorted(missing)}")
+        if rc.get("verdict") == "pass" and int(rc.get("exit_code", 0)) != 0:
+            problems.append("verdict=pass при exit_code != 0")
+        if rc.get("verdict") == "pass" and rc.get("forbidden_tokens"):
+            problems.append("verdict=pass при найденных запрещённых токенах")
+        exp_sha = v.get("statement_sha256")
+        if exp_sha and len(exp_sha) != 64:
+            problems.append("statement_sha256 не 64 hex-символа")
+        # пересчёт artefact hash, если файл есть
+        art = v.get("artifact_path")
+        if art and (pathlib.Path(__file__).parents[1] / art).exists():
+            real = hashlib.sha256((pathlib.Path(__file__).parents[1] / art).read_bytes()).hexdigest()
+            if real != rc.get("artifact_sha256"):
+                problems.append("artifact_sha256 не совпадает с файлом")
+        reject_expected = bool(v.get("expect_reject"))
+        if reject_expected:
+            # такой вектор ОБЯЗАН быть отвергнут: успех = нарушения найдены
+            ok = bool(problems)
+            shown = "; ".join(problems) if problems else "квитанция принята, а должна быть отвергнута"
+        else:
+            ok = not problems
+            if ok and expect and rc.get("verdict") != expect:
+                problems.append(f"ожидался verdict={expect}, получен {rc.get('verdict')}")
+                ok = False
+            shown = "; ".join(problems)
+        if ok:
+            passed += 1
+            tag = "отвергнут как должен" if reject_expected else f"verdict={rc.get('verdict')}"
+            print(f"  ok    {vid:24} {tag}")
+        else:
+            failed += 1
+            print(f"  FAIL  {vid:24} {shown}")
+    print(f"\nвекторов: {len(vectors)}, прошло: {passed}, провалено: {failed}")
+    return 0 if failed == 0 else 1
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--kind", required=True, choices=["lean_proof", "test_conformance"])
+    ap.add_argument("--kind", choices=["lean_proof", "test_conformance"])
+    ap.add_argument("--artifact")
+    ap.add_argument("--selftest", action="store_true", help="проверить квитанции из vectors.json")
+    if "--selftest" in sys.argv:
+        return selftest()
     ap.add_argument("--artifact", required=True)
     ap.add_argument("--budget", type=int, default=120, help="секунды (как в заказе)")
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
-    art = pathlib.Path(a.artifact)
+    if not a.selftest and (not a.kind or not a.artifact):
+        ap.error("нужны --kind и --artifact (или --selftest)")
+    art = pathlib.Path(a.artifact or ".")
     if not art.exists():
         print(json.dumps({"verdict": "error", "error": "artifact not found"}, ensure_ascii=False))
         return 2

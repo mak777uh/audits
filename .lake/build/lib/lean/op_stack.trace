@@ -1,0 +1,30 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["86a2e9bcabb7b05c.olean"],
+  "m": false,
+  "i": "ac19a444cccf97b6.ilean",
+  "c": "6815f6f4ecc6fc4b.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean c:\\Users\\Admin\\.elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe C:\\111\\projects\\audits-repo\\proofs\\op_stack.lean -o C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean\\op_stack.olean -i C:\\111\\projects\\audits-repo\\.lake\\build\\lib\\lean\\op_stack.ilean -c C:\\111\\projects\\audits-repo\\.lake\\build\\ir\\op_stack.c --setup C:\\111\\projects\\audits-repo\\.lake\\build\\ir\\op_stack.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["deps",
+   [["«audits-proofs»/Proofs:extraDep",
+     [["@«audits-proofs»:extraDep", "00000000000006bb"]]],
+    ["imports", "00000000000006bb"]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.36.0, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e",
+   "394907dbd0ce4c96"],
+  ["C:\\111\\projects\\audits-repo\\proofs\\op_stack.lean", "cb758f2bf80dd41a"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: op_stack", "9ce22fc8a417775e"],
+  ["Package.id?: (some audits-proofs)", "ccb41bfef4f771a3"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "5039299d008895cc"}
