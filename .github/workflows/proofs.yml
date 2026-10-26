@@ -39,3 +39,9 @@ jobs:
 
       - name: Verifier receipt vectors (включая негативные)
         run: python3 proof_market/verifier.py --selftest
+
+      - name: Cell escrow-v1 receipt is current
+        run: python3 cells/escrow-v1/check.py --check
+
+      - name: Cell escrow-v1 builds from scratch
+        run: python3 cells/escrow-v1/check.py

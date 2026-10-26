@@ -1,0 +1,51 @@
+{
+ "axioms": {
+  "paid_never_decreases": [
+   "propext",
+   "Quot.sound"
+  ],
+  "refund_over_balance_noop": [
+   "propext"
+  ],
+  "refund_preserves": [
+   "propext",
+   "Quot.sound"
+  ],
+  "release_all_then_release_noop": [
+   "propext",
+   "Classical.choice",
+   "Quot.sound"
+  ],
+  "release_over_balance_noop": [
+   "propext"
+  ],
+  "release_preserves": [
+   "propext",
+   "Quot.sound"
+  ],
+  "settled_splits_deposit": [
+   "propext",
+   "Quot.sound"
+  ]
+ },
+ "cell": "escrow-v1",
+ "error": null,
+ "forbidden_tokens": [],
+ "lean_exit_code": 0,
+ "model_sha256": "59d82cf3803400e1d412841ceab129726c2b70432c029736c2d9e0388dc6aec2",
+ "statement_sha256": "068ff1afcb816685c9e472460c5555a9b2aaae8b6d8d1c496324f6e1ebbc21de",
+ "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "theorems": [
+  "paid_never_decreases",
+  "refund_over_balance_noop",
+  "refund_preserves",
+  "release_all_then_release_noop",
+  "release_over_balance_noop",
+  "release_preserves",
+  "settled_splits_deposit"
+ ],
+ "toolchain": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+ "verdict": "pass",
+ "wall_clock_ms": 1325
+}
