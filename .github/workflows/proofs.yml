@@ -1,0 +1,39 @@
+name: proofs
+
+on:
+  push:
+    paths: ["proofs/**"]
+  pull_request:
+    paths: ["proofs/**"]
+  workflow_dispatch:
+
+jobs:
+  kernel-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan (Lean toolchain manager)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan.sh
+          sh elan.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Fail on sorry / admit
+        run: |
+          set -e
+          # комментарии и строки не считаем: ищем вызовы тактик
+          if grep -nE '(^|[^A-Za-z_])(sorry|admit)([^A-Za-z_]|$)' proofs/*.lean; then
+            echo "::error::proofs contain sorry/admit"; exit 1
+          fi
+          echo "no sorry/admit found"
+
+      - name: Compile every proof file
+        run: |
+          set -e
+          lean --version
+          for f in proofs/*.lean; do
+            echo "== $f"
+            lean "$f"
+          done
+          echo "all files compiled"
