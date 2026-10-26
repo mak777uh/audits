@@ -13,16 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install elan (Lean toolchain manager)
+      # фиксируем версию Lean: та же, на которой снят proofs/BUILD_LOG.md
+      - name: Install elan + Lean 4.36.0-rc1
         run: |
           curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan.sh
-          sh elan.sh -y --default-toolchain none
+          sh elan.sh -y --default-toolchain leanprover/lean4:v4.36.0-rc1
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: Fail on sorry / admit
         run: |
           set -e
-          # комментарии и строки не считаем: ищем вызовы тактик
           if grep -nE '(^|[^A-Za-z_])(sorry|admit)([^A-Za-z_]|$)' proofs/*.lean; then
             echo "::error::proofs contain sorry/admit"; exit 1
           fi
