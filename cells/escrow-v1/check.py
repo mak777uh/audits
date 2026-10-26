@@ -31,7 +31,14 @@ FORBIDDEN = ("sorry", "admit")
 
 
 def sha256(path: pathlib.Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    """sha256 от нормализованных переводов строк.
+
+    Windows-копия файла содержит CRLF, Linux-копия в CI — LF. Без нормализации квитанция,
+    снятая на Windows, не сходится в CI (поймано прогоном 40349667188). Хеш должен зависеть
+    от содержимого, а не от платформы.
+    """
+    raw = path.read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(raw).hexdigest()
 
 
 def lean_bin() -> str:
@@ -113,6 +120,7 @@ def run(write: bool) -> int:
         print("::error::SPEC.md изменился, квитанция устарела"); return 1
     if old.get("model_sha256") != receipt["model_sha256"]:
         print("::error::Escrow.lean изменился, квитанция устарела"); return 1
+    # версия Lean отличается между платформами (x86_64-w64-mingw32 vs linux-gnu) — не сравниваем её
     if old.get("verdict") != "pass" or receipt["verdict"] != "pass":
         print(f"::error::вердикт не pass: {old.get('verdict')} / {receipt['verdict']}"); return 1
     print(f"квитанция актуальна: {len(names)} теорем, вердикт pass")
